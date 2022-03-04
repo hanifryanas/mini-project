@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Home - Koi Auction</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Carter+One&family=Inter:wght@600&family=Permanent+Marker&display=swap" rel="stylesheet">
+        <script src="https://kit.fontawesome.com/fc3af24e15.js" crossorigin="anonymous"></script>
+        <style>
+            .navbar{
+                background-color: rgb(26, 87, 107);
+                display: flex;
+                justify-content: right;
+                align-items:center;
+                padding-right: 2%;
+                width: 100%;
+                height: 63.66px;
+                color: white;
+            }
+            .side-nav{
+                /* display: none; */
+                width:220px;
+                height:100%;
+                background: rgb(26, 87, 107);
+                position : fixed;
+                top: 0;
+                left: 0;
+                padding: 0.25% 1%;
+            }
+            .side-nav-2{
+                display: none;
+                width:110px;
+                height:100%;
+                background: rgb(26, 87, 107);
+                position : fixed;
+                top: 0;
+                left: 0;
+                padding: 0% 1%;
+            }
+            .logo-img{
+                text-decoration: none;
+            }
+            .nav-links{
+                list-style: none;
+                position: relative;
+                top: 25%;
+            }
+            .nav-links li{
+                height: fit-content;
+                margin: none;
+                padding: 10px 0px;
+            }
+            .nav-links li a{
+                display: flex;
+                color: white;
+                text-decoration: none;
+                padding: 2px 5px;
+                align-content: center;
+            }
+            .nav-links li a i{
+                font-size: 20px;
+                align-self: center;
+                margin-right: 7px;
+            }
+            .nav-links li a p{
+                font-size: 20px;
+                margin-top:0;
+                margin-bottom: 0;
+            }
+            .active{
+                color: rgb(26, 87, 107);
+                background: white;
+                width: 100%;
+                height: 47px;
+                position: absolute;
+                left: 0;
+                top:2.5%;
+                z-index: -1;
+                border-radius: 6px;
+                box-shadow: 0 5px 10px rgba(255, 255, 255, 0.392);
+                display: none;
+                transition: top 0.6s;
+            }
+            .nav-links li:hover a{
+                color: rgb(26, 87, 107);
+                transition: 0.3s;
+            }
+            .nav-links li:hover ~ .active{
+                display: block;
+            }
+            .nav-links li:nth-child(1):hover ~ .active{
+                top:2.5%;
+            }
+            .nav-links li:nth-child(2):hover ~ .active{
+                top:22.5%;
+            }
+            .nav-links li:nth-child(3):hover ~ .active{
+                top:42.5%;
+            }
+            .nav-links li:nth-child(4):hover ~ .active{
+                top:62.5%;
+            }
+            .nav-links li:nth-child(5):hover ~ .active{
+                top:82.5%;
+            }
+            .container{
+                display: grid;
+                position: relative;
+                left: 220px;
+                margin: none;
+                padding: none;
+                grid-template-columns: repeat(4, 15%);
+                gap: 5.5%;
+                row-gap: 0px;
+                padding: 10px;
+            }
+            .alert{
+                position: relative;
+                left: 220px;
+                padding: 2px;
+            }
+            /* .grid-container {
+                display: grid;
+                justify-content: center;
+                left: 220px;
+                grid-template-columns: repeat(4, 15%);
+                gap: 4.5%;
+                row-gap: 0px;
+                padding: 10px;
+            } */
+            .span-status{
+                height: 0.1%;
+            }
+            .status-card{
+                width: 50%;
+                position: relative; 
+                left: -11%;
+                top: -3500%;
+            }
+            .award{
+                width: 30%;
+                position: relative; 
+                right: -32%;
+                top: -5800%
+            }
+            .card{
+                background-color: rgba(136, 163, 230, 0.823);
+                width: 100%;
+                border-radius: 20px;
+                height: 90%;
+            }
+            .card-img-top{            
+                height:65%;
+                border-top-left-radius: 20px;
+                border-top-right-radius: 20px;
+            }
+            body{
+                background-color: rgb(198, 205, 252)
+            }
+            .list-group-item{
+                /* border: none; */
+                background-color:rgb(162, 185, 233);
+                height: 35px;
+                color: rgb(8, 5, 70);
+                display: flex;
+                justify-content: center;
+                text-align: center;
+                font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+                border-radius: 2%;
+                align-items: center;
+            }
+            .modal-content{
+                border-radius: 5%;
+                background-color: rgba(136, 163, 230, 0.946);
+            }
+            .modal-header{
+                height: 40px;
+            }
+            .modal-body{
+                display: flex;
+                gap: 3%;
+            }
+            #button-minus1{
+                border-width: 3px;
+                height: 25px;
+                display: flex;
+                align-items: center;
+                align-content: center;
+                gap: 1%;
+            }
+            #button-plus1{
+                border-width: 3px;
+                height: 25px;
+                display: flex;
+                align-items: center;
+                align-content: center;
+                gap: 1%;
+            }
+            #button-minus2{
+                border-width: 3px;
+                height: 25px;
+                display: flex;
+                align-items: center;
+                align-content: center;
+                gap: 1%;
+            }
+            #button-plus2{
+                border-width: 3px;
+                height: 25px;
+                display: flex;
+                align-items: center;
+                align-content: center;
+                gap: 1%;
+            }
+            .price-on-modal{
+                display:flex; 
+                text-align:center; 
+                width:170px; 
+                height: 25px; 
+                background-color: rgba(136, 163, 230, 0.946);
+            }
+            @media only screen and (max-width: 1190px){
+                .side-nav{
+                    display:none;
+                }
+                .side-nav-2{
+                    display: block;
+                }
+                .alert{
+                position: relative;
+                left: 110px;
+                padding: 2px;
+                width: 90%;
+}
+                .container{
+                    left: 110px;
+                }
+                .list-group-item{
+                    font-size: 7px;
+                }
+            
+            }
+        </style>
+    </head>
+    <body>
+        <div class="navbar">
+            <a href="./main-page.html"style="text-decoration: none; color: white; margin-right: 1%;">Home</a>
+            <a href="./about-us.html" style="text-decoration: none; color: white; margin-right: 1%;">About-Us</a>
+            <i style="padding-right: 1%;"class="fa-solid fa-cart-shopping fa-lg"></i>
+            <a href="#" style="text-decoration: none; color: white;" id="login-id" value="false">Login/Register</a>
+        </div>
+        <div class="side-nav">
+            <a href="#" style="text-decoration: none;">
+                   <img style="width: 100%;" src="./referrence/logo-koi-extend.png" alt="" class="logo-img">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#"><i class="fa-solid fa-book-open"></i><p>Status</p></a></li>
+                <li><a href="#"><i class="fa-solid fa-fish"></i><p>Type</p></a></li>
+                <li><a href="#"><i class="fa-solid fa-arrow-down-short-wide"></i><p>Minions</p></a></li>
+                <li><a href="#"><i class="fa-solid fa-arrow-down-wide-short"></i><p>Jumbos</p></a></li>
+                <li><a href="#"><i class="fa-solid fa-star"></i><p>Quality</p></a></li>
+                <div class="active"></div>
+            </ul>
+        </div>
+        <div class="side-nav-2">
+            <a href="#" style="text-decoration: none;">
+                   <img style="width: 100%;" src="./referrence/logo-koi.png" alt="" class="logo-icon">
+            </a>
+            <ul class="nav-links">
+                <li><a href="#"><i class="fa-solid fa-book-open"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-fish"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-arrow-down-short-wide"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-arrow-down-wide-short"></i></a></li>
+                <li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+                <div class="active"></div>
+            </ul>
+        </div>
+        <div class="alert alert-primary" role="alert">
+            Find information about the coronavirus (COVID-19) pandemic, how to protect yourself and your family. Let's end this together! Remember this Covid-19 is still existed.
+        </div>
+        <div class="container">
+            <a style="text-decoration: none;" href="#" data-bs-toggle="modal" data-bs-target="#detailfoto1" onclick=price1()> <script src="./prices.js"></script> 
+                <div class="card">
+                    <span class="span-status">
+                        <img class="status-card" src="./referrence/bid-now-blue.png" alt="">
+                        <img class="award" src="./referrence/star-light-blue.png" alt="">
+                    </span>
+                    <img class="card-img-top" src="./referrence/showa-1.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" >Showa F 70cm</li>
+                            <li class="list-group-item prices">Rp 25.000.000</li>
+                            <li class="list-group-item">countdown-time</li>
+                          </ul>
+                    </div>
+                </div>
+            </a>
+            <a style="text-decoration: none;" href="#" data-bs-toggle="modal" data-bs-target="#detailfoto2" onclick=price2()> <script src="./prices.js"></script> 
+                <div class="card">
+                    <span class="span-status">
+                        <img class="status-card" src="./referrence/bid-now-blue.png" alt="">
+                        <img class="award" src="./referrence/star-light-blue.png" alt="">
+                    </span>
+                    <img class="card-img-top" src="./referrence/shiro-1.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" >Shiro M 50cm</li>
+                            <li class="list-group-item prices">Rp 15.000.000</li>
+                            <li class="list-group-item">countdown-time</li>
+                          </ul>
+                    </div>
+                </div>
+            </a>
+            <div class="card">
+                <span class="span-status">
+                    <img class="status-card" src="./referrence/soon-blue.png" alt="">
+                    <!-- <img class="award" src="./card-ref/award-vector.png" alt=""> -->
+                </span>
+                <img class="card-img-top" src="./referrence/kohaku-1.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" >Kohaku M 26cm</li>
+                        <li class="list-group-item">Rp 1.200.000</li>
+                        <li class="list-group-item"><p id="demo" style="font-size: 80%; margin-top: 0px; text-align: center;"></p></li>
+                      </ul>
+                </div>
+            </div>
+            <div class="card">
+                <span class="span-status">
+                    <img class="status-card" src="./referrence/sold-out-blue.png" alt="">
+                    <img class="award" src="./referrence/star-light-blue.png" alt="">
+                </span>
+                <img class="card-img-top" src="./referrence/shiro-2.jpeg" alt="Card image cap">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" >Shiro F 51cm</li>
+                        <li class="list-group-item">Rp 12.500.000</li>
+                        <li class="list-group-item"><p id="demo" style="font-size: 80%; margin-top: 0px; text-align: center;"></p></li>
+                      </ul>
+                </div>
+            </div>
+            <div class="card">
+                <span class="span-status">
+                    <img class="status-card" src="./referrence/sold-out-blue.png" alt="">
+                    <img class="award" src="./referrence/star-light-blue.png" alt="">
+                </span>
+                <img class="card-img-top" src="./referrence/kohaku-2.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" >Kohaku M 61cm</li>
+                        <li class="list-group-item">Rp 14.500.000</li>
+                        <li class="list-group-item"><p id="demo" style="font-size: 80%; margin-top: 0px; text-align: center;"></p></li>
+                      </ul>
+                </div>
+            </div>
+            <div class="card">
+                <span class="span-status">
+                    <img class="status-card" src="./referrence/sold-out-blue.png" alt="">
+                    <!-- <img class="award" src="./referrence/star-light-blue.png" alt=""> -->
+                </span>
+                <img class="card-img-top" src="./referrence/sanke-1.png" alt="Card image cap">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" >Sanke M 41cm</li>
+                        <li class="list-group-item">Rp 3.500.000</li>
+                        <li class="list-group-item"><p id="demo" style="font-size: 80%; margin-top: 0px; text-align: center;"></p></li>
+                      </ul>
+                </div>
+            </div>
+            <div class="card">
+                <span class="span-status">
+                    <img class="status-card" src="./referrence/sold-out-blue.png" alt="">
+                    <!-- <img class="award" src="./referrence/star-light-blue.png" alt=""> -->
+                </span>
+                <img class="card-img-top" src="./referrence/shiro-3.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" >Shiro F 45cm</li>
+                        <li class="list-group-item">Rp 5.500.000</li>
+                        <li class="list-group-item"><p id="demo" style="font-size: 80%; margin-top: 0px; text-align: center;"></p></li>
+                      </ul>
+                </div>
+            </div>
+            <div class="card">
+                <span class="span-status">
+                    <img class="status-card" src="./referrence/sold-out-blue.png" alt="">
+                    <!-- <img class="award" src="./referrence/star-light-blue.png" alt=""> -->
+                </span>
+                <img class="card-img-top" src="./referrence/showa-2.png" alt="Card image cap">
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item" >Showa M 35cm</li>
+                        <li class="list-group-item">Rp 1.500.000</li>
+                        <li class="list-group-item"><p id="demo" style="font-size: 80%; margin-top: 0px; text-align: center;"></p></li>
+                      </ul>
+                </div>
+            </div>
+           
+        <!-- Modal -->
+        <div class="modal fade" id="detailfoto1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLabel">Details</h3>
+                    </div>
+                    <div class="modal-body">
+                        <img style="width: 50%" src="./referrence/showa-1.jpg"/>
+                        <ul class="list-group list-group-flush">
+                            <li style="width: 100%;" class="list-group-item" >Showa </li>
+                            <li style="width: 100%;" class="list-group-item">Female</li>
+                            <li style="width: 100%;" class="list-group-item">70 cm</li>
+                            <li style="width: 100%;" class="list-group-item">Show Quality</li>
+                            <li style="width: 100%;" class="list-group-item">Bandung</li>
+                            <li style="width: 100%; display: flex;" class="list-group-item"><input id="mdl-harga-1" class="price-on-modal" readonly>
+                                <script src="./modify-prices.js"></script>
+                                <button type="button" class="btn btn-primary" id="button-minus1" disabled onclick="subsPrices1(document.getElementsByClassName('prices')[0].innerHTML)">-</button><button type="button" class="btn btn-primary" id="button-plus1" onclick="addPrices1(document.getElementsByClassName('prices')[0].innerHTML)">+</button></li>
+                            <button style="width: 100%; position: relative; top: 15px;"type="button" class="btn btn-primary" onclick="bidNow()" ><script src="./bid-now.js"></script> Bid Now</button>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="detailfoto2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLabel">Details</h3>
+                    </div>
+                    <div class="modal-body">
+                        <img style="width: 50%" src="./referrence/shiro-1.jpg"/>
+                        <ul class="list-group list-group-flush">
+                            <li style="width: 100%;" class="list-group-item" >Shiro </li>
+                            <li style="width: 100%;" class="list-group-item">Male</li>
+                            <li style="width: 100%;" class="list-group-item">50cm</li>
+                            <li style="width: 100%;" class="list-group-item">Show Quality</li>
+                            <li style="width: 100%;" class="list-group-item">Bandung</li>
+                            <li style="width: 100%; display: flex;" class="list-group-item"><input id="mdl-harga-2" class="price-on-modal" readonly>
+                                <script src="./modify-prices.js"></script>
+                                <button type="button" class="btn btn-primary" id="button-minus2" disabled onclick="subsPrices2(document.getElementsByClassName('prices')[1].innerHTML)">-</button><button type="button" class="btn btn-primary" id="button-plus2" onclick="addPrices2(document.getElementsByClassName('prices')[1].innerHTML)">+</button></li>
+                            <button style="width: 100%; position: relative; top: 15px;"type="button" class="btn btn-primary" onclick="bidNow()" ><script src="./bid-now.js"></script>Bid Now</button>
+                        </ul>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
